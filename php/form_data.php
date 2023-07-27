@@ -4,7 +4,7 @@ try {
    include('connect.php');
    if(!empty($_REQUEST)){
       /* obtenemos el id de la region */
-      $rut = $_REQUEST['rut'];
+      $rut =         $_REQUEST['rut'];
       $nombre        = $_REQUEST['nombre']; 
       $correo        =  $_REQUEST['correo']; 
       $alias         = $_REQUEST['alias']; 
@@ -12,15 +12,22 @@ try {
       $nombre_coumna = $_REQUEST['comuna']; 
       $candidato     = $_REQUEST['candidato'];
       $preguntas     = $_REQUEST['pregunta'];
-      foreach ($preguntas as $key => $value) {
-       
-         if($key < 1){
+   
 
-         $pregunta_new = $value.",";
-         }else{
-         $preguntas_new = $pregunta_new.$value;
+      if(count($preguntas) == 1){
+      $preguntas_new = $_REQUEST['pregunta'][0];
+      }else{
+         foreach ($preguntas as $key => $value) {
+       
+            if($key < 1){
+   
+            $pregunta_new = $value.",";
+            }else{
+            $preguntas_new = $pregunta_new.$value;
+            }
          }
       }
+
       if ($result = $mysqli -> query("SELECT id
          FROM regiones
          WHERE region_ordinal LIKE '%".$region."%' ")) {
@@ -59,7 +66,7 @@ try {
             throw new Exception("Error al insertar datos.", 1);
          }
       }else{
-          $error['error'] =  "Rut Registrado";
+          $error['error'] =  "El rut ya ha votado.";
         echo json_encode($error);
       }
      

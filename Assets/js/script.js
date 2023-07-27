@@ -71,22 +71,37 @@ $(function() {
     
     /** ##### Envio de formulario ##### */
     $( "#formulario" ).on( "submit", function(e) {
-        e.preventDefault();
+        
         if(alias_val == true && alias_val2 == true){
+
+
             var dataString = $(this).serializeArray();
+
             console.log(dataString);
-            $.ajax({
+
+            $.post("php/form_data.php", dataString , function(data, status){
+                console.log(data.error);
+                if(data.error != ""){
+                    alert (data.error);
+                }else{
+                    alert("Guardando datos");
+                }
+                
+              });
+
+
+            /*$.ajax({
             type: "POST",
             url: "php/form_data.php",
             data: dataString,
             done: function (data) {
-                console.log("success");
-                console.log(data);
+                alert("Guardando datos");
             }
-            });
+            });*/
         }else{
             alert("Completa los campos correctamente.");
         }
+        e.preventDefault();
 
 
     });
