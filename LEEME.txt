@@ -1,1 +1,8 @@
+Obtener proyecto via github
+url: https://github.com/ericjeje/Desis
+crear carpeta en httdocs y integrar proyecto a nuestro servidor
+la aplicacion esta funcionando con los cdn asi que es necesario tener internet
+la carpeta SQL encontaran un archivo bd.sql el que contiene la base de datos
+
+MySQL: 5.7.26 
 Versión de PHP: 7.4.2
